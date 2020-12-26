@@ -1,0 +1,15 @@
+### Ingore Files ###
+
+### Settings
+config/env/secrets.json
+
+### Cache files
+.idea/
+__pycache__/
+*.pyc
+
+### Logs
+api_service.log*
+
+### Virtual Environment
+venv/
