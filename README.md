@@ -3,18 +3,18 @@
 
 # 1. Quick Start
 ## 1.1 Clone
-~~~
+~~~bash
 $> git clone https://github.com/miintto/django-boilerplate-project.git
 ~~~
 
 ## 1.2 Install Libraries
-~~~
+~~~bash
 $> cd django-boilerplate-project
 $> pip install -r requirements.txt
 ~~~
 
 ## 1.3 Set Private Data
-~~~
+~~~bash
 $> vi config/env/secrets.json
 
 {
@@ -33,22 +33,22 @@ $> vi config/env/secrets.json
 
 ## 1.4 Migration
 - 모델 migrate
-~~~
+~~~bash
 $> python manage.py migrate
 ~~~
 - 샘플 데이터 업로드
-~~~
+~~~bash
 $> python manage.py loaddata dumps.json
 ~~~
 
 ## 1.5 Run Server
-~~~
+~~~bash
 $> python manage.py runserver
 ~~~
 
 # 2. Descriptions
 ## 2.1 구조
-~~~
+~~~bash
 .
 ├─ config            # Config app
 │   ├─ env             # 보안이 필요한 변수 관리
@@ -108,7 +108,7 @@ API 호출시 로그를 남겨 모니터링으로 활용하기 위한 모듈
  took   | int      | 소요시간 (tag=TOOK 일 때만 출력)
 
 - Sample
-~~~
+~~~bash
 # IN
 {
     "time": "2020-12-26T23:27:48.777486+09:00", 
@@ -162,7 +162,7 @@ status 200 일 시에 기본적인 response 형태를 잡아주기 위한 모듈
  data | object | 데이터
 
 - Sample
-~~~
+~~~bash
 {
     "code": 0,
     "msg": "SUCCESS",
@@ -190,7 +190,7 @@ status 200 일 시에 기본적인 response 형태를 잡아주기 위한 모듈
  msg   | str  | 상태 메시지 
 
 - Sample
-~~~
+~~~bash
 {
     "code": 1002,
     "error": "INVALID_PARAMETER"
@@ -208,7 +208,7 @@ status 200 일 시에 기본적인 response 형태를 잡아주기 위한 모듈
  msg   | str  | 에러 메시지
 
 - Sample
-~~~
+~~~bash
 {
     "code": 999,
     "error": "ValueError"
@@ -229,7 +229,7 @@ status 200 일 시에 기본적인 response 형태를 잡아주기 위한 모듈
   - dev.py: 개발시 로컬 환경에서 필요한 변수 관리
   - prod.py: 배포시 필요한 환경 변수 조정
   - 배포 환경에는 아래와 같이 prod 설정값 으로 실행
-~~~
+~~~bash
 $> python manage.py runserver --settings=config.settings.prod
 ~~~
 
@@ -241,7 +241,7 @@ $> python manage.py runserver --settings=config.settings.prod
 
 ## 2.5 App 구성
 ### 2.5.1 구조
-~~~
+~~~bash
 .
 ├─ migrations
 ├─ serializers
@@ -276,10 +276,10 @@ $> python manage.py runserver --settings=config.settings.prod
 # 3. Sample API
 ## 3.1 정상적인 결과
 - Case 1.
-~~~
+~~~bash
 GET /test/sample?contents_id=2
 ~~~
-~~~
+~~~bash
 HTTP 200 OK
 {
     "code": 0,
@@ -299,14 +299,14 @@ HTTP 200 OK
 ~~~
 
 - Case 2.
-~~~
+~~~bash
 POST /test/sample
 {
     "category": "테마파크", 
     "order_by": "price"
 }
 ~~~
-~~~
+~~~bash
 HTTP 200 OK
 {
     "code": 0,
@@ -331,10 +331,10 @@ HTTP 200 OK
 ~~~
 ## 3.2 예외 케이스
 - 잘못된 input parameter
-~~~
+~~~bash
 GET /test/sample?id=2
 ~~~
-~~~
+~~~bash
 HTTP 400 Bad Request
 {
     "contents_id": [
@@ -343,10 +343,10 @@ HTTP 400 Bad Request
 }
 ~~~
 - 범위 밖의 input 값
-~~~
+~~~bash
 GET /test/sample?contents_id=-1
 ~~~
-~~~
+~~~bash
 HTTP 200 OK
 {
     "code": 1000,
@@ -354,14 +354,14 @@ HTTP 200 OK
     "msg": "[Error 1000] NO_DATA: -1"
 }
 ~~~
-~~~
+~~~bash
 POST /test/sample
 {
     "category": "숙박", 
     "order_by": "srart_dtm"
 }
 ~~~
-~~~
+~~~bash
 HTTP 200 OK
 {
     "code": 1001,
